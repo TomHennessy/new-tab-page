@@ -1,0 +1,109 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "standard",
+    "prettier",
+    "plugin:security/recommended",
+    "react-app",
+    "plugin:jsx-a11y/recommended",
+    "plugin:jsx-control-statements/recommended",
+    "plugin:jest/recommended",
+    "prettier-standard/end"
+  ],
+  "plugins": [
+    "import",
+    "prettier",
+    "standard",
+    "security",
+    "jest",
+    "jsx-a11y",
+    "jsx-control-statements",
+    "react",
+    "unicorn",
+    "react-hooks"
+  ],
+  "overrides": [
+    {
+      "files": ["**/*style.js", "**/*styles.js"],
+      "rules": {
+        "no-magic-numbers": ["off"]
+      }
+    },
+    {
+      "files": ["./src/hooks/**"],
+      "rules": {
+        "unicorn/filename-case": ["off"]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "plugins": ["@typescript-eslint"],
+      "extends": [
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react/recommended"
+      ],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          {
+            "argsIgnorePattern": "^_.*$",
+            "varsIgnorePattern": "^(React|_.*)$"
+          }
+        ],
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/no-use-before-define": ["error"],
+        "@typescript-eslint/no-empty-function": ["error", { "allow": ["arrowFunctions"] }]
+      }
+    }
+  ],
+  "rules": {
+    "camelcase": ["warn", { "allow": ["^LEGACY__*", "^UNSAFE__*"] }],
+    "no-magic-numbers": ["warn", { "ignoreArrayIndexes": true, "ignore": [0, 1, -1] }],
+    "no-unused-vars": ["error"],
+    "func-names": ["error", "always"],
+    "react/jsx-no-undef": ["error", { "allowGlobals": true }],
+    "react/jsx-pascal-case": ["warn"],
+    "jsx-control-statements/jsx-jcs-no-undef": ["error", { "allowGlobals": true }],
+    "unicorn/filename-case": ["error", { "case": "kebabCase" }],
+    "prettier/prettier": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "security/detect-non-literal-fs-filename": "off",
+    "security/detect-object-injection": "off",
+    "security/detect-unsafe-regex": "off",
+    "import/no-anonymous-default-export": [
+      "warn",
+      {
+        "allowArray": true,
+        "allowArrowFunction": false,
+        "allowAnonymousClass": false,
+        "allowAnonymousFunction": false,
+        "allowCallExpression": true, // The true value here is for backward compatibility
+        "allowLiteral": true,
+        "allowObject": true
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "pathGroups": [{ "pattern": "~/**", "group": "parent" }],
+        "alphabetize": { "order": "asc" }
+      }
+    ],
+    "react/function-component-definition": [
+      "error",
+      { "namedComponents": "arrow-function", "unnamedComponents": "arrow-function" }
+    ],
+    "jsx-control-statements/jsx-use-if-tag": "off"
+  },
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "node": true,
+    "es6": true,
+    "jest": true,
+    "jest/globals": true
+  }
+}

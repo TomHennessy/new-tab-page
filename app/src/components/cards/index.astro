@@ -1,0 +1,98 @@
+---
+import Card from './Card.astro';
+
+const cardGroups = [
+{
+    title: 'Go To',
+    cards: [
+      {
+        icon: 'github',
+        title: 'GitHub',
+        href: 'https://github.com/uswitch?q=broadband&type=all&language=&sort='
+      },
+      {
+        icon: 'notion',
+        title: 'Task board',
+        href: 'https://www.notion.so/rvu/BB-Team-Select-board-11299772bb4248529fc66ed1682f3df1?pvs=4'
+      },
+      {
+        icon: 'slack',
+        title: 'Slack',
+        href: 'https://rv-u.slack.com/archives/C04JYS31WBX'
+      },
+      {
+        icon: 'calendar',
+        title: 'Calendar',
+        href: 'https://calendar.google.com/calendar/u/0/r?tab=rc'
+      }
+    ]
+  },
+  {
+    title: 'New',
+    cards: [
+      {
+        icon: 'notion',
+        title: 'New Notion page',
+        href: 'https://notion.so/new'
+      },
+      {
+        icon: 'video-camera',
+        title: 'New Google Meet',
+        href: 'https://meet.google.com'
+      }
+    ]
+  }
+]
+
+---
+
+{cardGroups.map(({ title, cards }) => {
+
+  return (
+    <h2>{title}</h2>  
+    
+    <ul role="list" class="link-card-grid">
+      {cards.map((card: { href: string; title: string; icon: string; }) => (
+        <Card
+          href={card.href}
+          title={card.title}
+          body=''
+          icon={card.icon}
+        />
+      ))}
+    </ul>
+  )
+})}
+
+
+<!-- <ul role="list" class="link-card-grid">
+  <Card
+    href="https://docs.astro.build/"
+    title="Documentation"
+    body="Learn how Astro works and explore the official API docs."
+  />
+  <Card
+    href="https://astro.build/integrations/"
+    title="Integrations"
+    body="Supercharge your project with new frameworks and libraries."
+  />
+  <Card
+    href="https://astro.build/themes/"
+    title="Themes"
+    body="Explore a galaxy of community-built starter themes."
+  />
+  <Card
+    href="https://astro.build/chat/"
+    title="Community"
+    body="Come say hi to our amazing Discord community. ❤️"
+  />
+</ul> -->
+
+<style>
+	.link-card-grid {
+		display: grid;
+    grid-template-columns: repeat(6, 1fr);
+		gap: 12px;
+		padding: 0;
+	}
+</style>
